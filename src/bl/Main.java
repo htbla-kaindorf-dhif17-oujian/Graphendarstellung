@@ -56,7 +56,17 @@ public class Main {
     
     public char[] getAlleNachbarn(char knoten){
         int knotenIndex = getIndex(knoten);
-        return null;
+        List<Character> nachbarn = new ArrayList<>();
+        for(int i = 0; i< matrix[knotenIndex].length; i++){
+            if(matrix[knotenIndex][i] == 1){
+                nachbarn.add(knotenListe[i]);
+            }
+        }
+        char[] nachbarnFeld = new char[nachbarn.size()];
+        for(int i = 0; i< nachbarn.size(); i++){
+            nachbarnFeld[i] = nachbarn.get(i);
+        }
+        return nachbarnFeld;
     }
     
     public int getIndex(char knoten){
@@ -99,6 +109,10 @@ public class Main {
             Main main = new Main();
             main.ladeDaten();
             System.out.println(main.toString());
+            System.out.println(main.existiertKnoten('B'));
+            System.out.println(main.existiertKante('B', 'C'));
+            System.out.println(main.existiertKante('D', 'C'));
+            System.out.println(main.getAlleNachbarn('C'));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
