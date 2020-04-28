@@ -46,11 +46,27 @@ public class Main {
     }
     
     public boolean existiertKante(char startKnoten, char endKnoten){
+        int index1 = getIndex(startKnoten);
+        int index2 = getIndex(endKnoten);
+        if(matrix[index1][index2] == 1){
+            return true;
+        }
         return false;
     }
     
     public char[] getAlleNachbarn(char knoten){
+        int knotenIndex = getIndex(knoten);
         return null;
+    }
+    
+    public int getIndex(char knoten){
+        
+        for(int j = 0; j < knotenListe.length; j++){
+            if(knotenListe[j]==knoten){
+                return j;
+            }
+        }
+        throw new RuntimeException("Knoten "+ knoten + " existiert nicht");
     }
     
     public boolean existiertKnoten(char knoten){
