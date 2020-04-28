@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,6 +27,21 @@ public class Main {
     public void ladeDaten() throws IOException{
         
         BufferedReader br = new BufferedReader(new FileReader(Paths.get(System.getProperty("user.dir"), "src","res","daten.csv").toFile()));
+        String line = br.readLine();
+        String[] lineParts = line.split(",");
+        knotenListe = new char[lineParts.length - 1];
+        for(int i = 1; i<lineParts.length; i++){
+            knotenListe[i-1] = lineParts[i].charAt(0);
+        }
+        matrix = new int[knotenListe.length][knotenListe.length];
+        
+        for(int i = 0;i < knotenListe.length; i++){
+            line = br.readLine();
+            lineParts = line.split(",");
+            for(int j = 1; j < lineParts.length;j++){
+                matrix[i][j-1] = Integer.parseInt(lineParts[j]);
+            }
+        }
         
     }
     
@@ -45,7 +62,17 @@ public class Main {
         return false;
     }
     
+    public String toString(){
+        String output = "";
+        return output;
+    }
+    
     public static void main(String[] args) {
-        
+        try {
+            Main main = new Main();
+            main.ladeDaten();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
