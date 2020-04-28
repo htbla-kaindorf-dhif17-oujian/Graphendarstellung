@@ -63,7 +63,18 @@ public class Main {
     }
     
     public String toString(){
-        String output = "";
+        String output = "  ";
+        for (char c : knotenListe) {
+            output += c + " ";
+        }
+        output += "\n-----------\n";
+        for(int i = 0; i<knotenListe.length; i++){
+            output += knotenListe[i] + " ";
+            for(int j = 0; j< matrix[i].length;j++){
+                output += matrix[i][j] + " ";
+            }
+            output += "\n";
+        }
         return output;
     }
     
@@ -71,6 +82,7 @@ public class Main {
         try {
             Main main = new Main();
             main.ladeDaten();
+            System.out.println(main.toString());
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
